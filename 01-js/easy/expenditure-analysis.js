@@ -9,7 +9,24 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  let category_object = {}
+  for (let transaction of transactions) {
+    if (category_object[transaction.category]) {
+      category_object[transaction.category] += transaction.price
+    }
+    else {
+      category_object[transaction.category] = transaction.price
+    }
+  }
+
+  let output_array = []
+  for (let key in category_object) {
+    let temp = {}
+    temp["category"] = key
+    temp["totalSpent"] = category_object[key]
+    output_array.push(temp)
+  }
+  return output_array;
 }
 
 module.exports = calculateTotalSpentByCategory;
